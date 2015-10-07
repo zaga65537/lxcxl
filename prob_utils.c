@@ -13,13 +13,10 @@ double* pq_alloc(double* m_rates, double* lapse, int b_term, int ad_num, int ci_
     //根据死亡率计算PQ
     //m_rates		中各死亡率的储存顺序为总死亡率(1), 意外发生率(ad_num), 重疾发生率(ci_num), 重疾死亡率站总死亡率百分比(ci_num),注意m_rates中数据是按列存。
     //lapse 脱落率
-    // !!! 计算GP时 b_term 要使用实际的benefit term ＋ 1， 因为MB的计算需要多一年的生存率
     int row_num = 1 + ad_num + ci_num * 2;
     int input_num = b_term * row_num;
-    int output_num = input_num + b_term * 1; // 多一列生存的概率, 以及一列脱落率
-    if(lapse != NULL){
-        output_num += b_term;
-    }
+    int output_num = input_num + b_term * 2; // 多一列生存的概率, 以及一列脱落率
+
     
     double *res = (double*) calloc(output_num, sizeof(double)); // 在堆上分配返回数组的内存并初始化为0
     

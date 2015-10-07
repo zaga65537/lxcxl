@@ -88,7 +88,7 @@ def actuarial_pv(pay_ndarr, rate, when, prob_ndarr=None):
     :param prob_ndarr:
     :return:
     """
-    c_fun = libc.actuarial_pc
+    c_fun = libc.actuarial_pv
     c_fun.argtypes = [c.POINTER(c.c_double), c.c_int, c.POINTER(c.c_double), c.c_double, c.c_double]
     c_fun.restype = c.POINTER(c.c_double)
     if prob_ndarr is None:

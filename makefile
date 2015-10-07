@@ -1,6 +1,6 @@
 out = lxcxl.so
-o_files = prob_utils.o gp_utils.o
-h_files = prob_utils.h gp_utils.h
+o_files = prob_utils.o gp_utils.o utils.o
+h_files = prob_utils.h gp_utils.h utils.h
 debug_o = debug_utils.o $(o_files)
 debug_h = debug_utils.h
 $(out): $(o_files)
