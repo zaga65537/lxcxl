@@ -47,6 +47,7 @@ typedef struct {
 
 double * load_benefit(BenefitData* b_arr, int b_arr_len, Contract *contract);
 double * actuarial_pv(double *pay, int pay_len, double *prob, double rate, double when);
-double  gp(double *pq_arr, int b_term, int p_term, int ad_num, int ci_num, int cid_num, double** benefit, double** benefit_gp, double* when, double *loading, double rate);
+double * loading(double *loading_arr, int row_num, int col_num, int *p_term_key, int key_len, int p_term);
+//double  gross_premium(double *pq_arr, int b_term, int p_term, int ad_num, int ci_num, int cid_num, double* benefit, double* benefit_gp, double* when, double *loading, double rate);
 
 #endif /* gp_utils_h */

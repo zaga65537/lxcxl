@@ -96,3 +96,16 @@ def actuarial_pv(pay_ndarr, rate, when, prob_ndarr=None):
     else:
         res = c_fun(np.ctypeslib.as_ctypes(pay_ndarr), pay_ndarr.size, np.ctypeslib.as_ctypes(prob_ndarr), rate, when)
     return np.ctypeslib.as_array(res, (pay_ndarr.size, ))
+
+def loading(loading_ndarr, p_term_key,p_term):
+    """
+        double * loading(double *loading_arr, int row_num, int col_num, int *p_term_key, int key_len, int p_term)
+    """
+    c_fun = libc.loading
+    c_fun.argtypes = [c.POINTER(c.c_double), c.c_int, c.c_int, c.POINTER(c.c_int), c.c_int, c.c_int]
+    c_fun.restype = c.POINTER(c.c_double)
+    loading_arr = np.ravel(loading_ndarr,"C")
+    loading_arr = np.ctypeslib.as_ctypes(loading_arr)
+    row_num, col_num = loading_ndarr.shape
+    res = c_fun(loading_arr, row_num, col_num, np.ctypeslib.as_ctypes(p_term_key), p_term_key.size, p_term)
+    return np.ctypeslib.as_array(res, (p_term,))

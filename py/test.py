@@ -37,9 +37,15 @@ def test_load_benefit(contract):
     res = reduce(lambda x, y: pd.merge(x, y, left_index=True, right_index=True), b_ndarr)
     return res
 
+def test_loading(p_term):
+    loading_ndarr = np.asarray([[0.1,0,0,0,0,0],[0.3,0.12,0.05,0,0,0],[0.35,0.2,0.15,0.05,0.05,0],[0.4,0.25,0.2,0.15,0.1,0.05]])
+    p_term_key = np.asanyarray([1,3,5,10], dtype=np.int32)
+    return loading(loading_ndarr, p_term_key,p_term)
 
 if __name__ == "__main__":
-    test_pq()
+    # test_pq()
+    for i in [1,3,5,10,15]:
+        print i, test_loading(i)
     # contract = Contract(Male, 60, 1, 20, 5)
     # df = test_load_benefit(contract)
     # df.to_csv("out_benefit.csv", index=False)
