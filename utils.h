@@ -9,7 +9,7 @@
 #define utils_h
 
 
-double double_sum(double *arr, int len);
+double ys_sum(double *arr, int len);
 int int_find_arr(int *arr, int len, int val);
 
 #endif
