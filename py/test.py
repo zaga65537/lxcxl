@@ -42,6 +42,9 @@ def test_loading(p_term):
     p_term_key = np.asanyarray([1,3,5,10], dtype=np.int32)
     return loading(loading_ndarr, p_term_key,p_term)
 
+def test_gp(gender, age, b_term, p_term):
+    pq_ndarr = load_m_rates(gender, age, b_term+1)
+
 if __name__ == "__main__":
     # test_pq()
     for i in [1,3,5,10,15]:

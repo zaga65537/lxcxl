@@ -76,7 +76,7 @@ double * loading(double *loading_arr, int row_num, int col_num, int *p_term_key,
 
 
 double  gross_premium(double *pq_arr, int b_term, int p_term, int ad_num,
-		int ci_num, int cid_num, double* benefit, double* benefit_gp, double* when, double *loading, double rate){
+		int ci_num, int cid_num, double* benefit, double* benefit_gp, double *loading, double rate){
 
   //"DB", "ADB1", "ADB2", "ADB3", "ADB4", "CIB", "SB", "MB", "DB_GP", "ADB_GP1", "ADB_GP2", "ADB_GP3", "ADB_GP4", "CIB_GP", "SB_GP", "MB_GP"
 	int pq_row_num = b_term + 1; // pq 要比benefit term 多计算一年；

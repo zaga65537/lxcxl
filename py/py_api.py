@@ -109,3 +109,19 @@ def loading(loading_ndarr, p_term_key,p_term):
     row_num, col_num = loading_ndarr.shape
     res = c_fun(loading_arr, row_num, col_num, np.ctypeslib.as_ctypes(p_term_key), p_term_key.size, p_term)
     return np.ctypeslib.as_array(res, (p_term,))
+
+
+def gross_premium(pq_ndarr, b_term, p_term, ad_num, ci_num, cid_num, benfit_ndarr, benefit_gp_ndarr, loading_ndarr, rate):
+    """
+        double  gross_premium(double *pq_arr, int b_term, int p_term, int ad_num,
+        		int ci_num, int cid_num, double* benefit, double* benefit_gp, double *loading, double rate)
+    """
+    c_fun = libc.gross_premium
+    c_fun.argtypes = (c.POINTER(c.c_double), c.c_int, c.c_int, c.c_int, c.c_int, c.c_int, \
+        c.POINTER(c.c_double), c.POINTER(c.c_double), c.POINTER(c.c_double), c.c_int)
+    assert b_term == pq_ndarr.shape[0] - 1
+    pq_arr = np.ctypeslib.as_ctypes(np.ravel(pq_ndarr, "F"))
+    benefit = np.ctypeslib.as_ctypes(np.ravel(benefit_ndarr, "F"))
+    benefit_gp = np.ctypeslib.as_ctypes(np.ravel(benefit_gp_ndarr, "F"))
+    loading = np.ctypeslib.as_ctypes(np.ravel(loading_ndarr))
+    return c_fun(pq_arr, b_term, p_term, ad_num, ci_num, cid_num, benefit, benefit_gp, loading, rate)
